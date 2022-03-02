@@ -1,1 +1,1 @@
-# 
+# Modern Frontend Boilerplate
