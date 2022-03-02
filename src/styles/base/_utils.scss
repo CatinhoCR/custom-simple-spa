@@ -1,23 +1,33 @@
-// Font Styles, Transforms and Decorations
+.clearfix {
+  @include clearfix();
+}
+
+// Font
 .font {
-  &--b {
+  &-bold {
     font-weight: $bold-weight !important;
   }
 
-  &--m {
+  &-medium {
     font-weight: $medium-weight !important;
   }
 
-  &--i {
+  &-italic {
     font-style: italic !important;
   }
+}
 
-  &--up {
+.text {
+  &-up {
     text-transform: uppercase !important;
   }
 
-  &--cap {
+  &-cap {
     text-transform: capitalize !important;
+  }
+
+  &-low {
+    text-transform: lowercase !important;
   }
 }
 
@@ -48,6 +58,25 @@
 
   &-block {
     display: block !important;
+  }
+}
+
+// Justify content flex box
+.justify {
+  &--center {
+    justify-content: center !important;
+  }
+
+  &--space-between {
+    justify-content: space-between !important;
+  }
+
+  &--start {
+    justify-content: flex-start !important;
+  }
+
+  &--end {
+    justify-content: flex-end !important;
   }
 }
 
@@ -92,7 +121,7 @@
 .mobile-only {
   display: inline-block;
 
-  @include break-min($lg) {
+  @include break-min($md) {
     display: none !important;
   }
 }
@@ -113,10 +142,10 @@
   }
 }
 
-.grid-wrapper {
-  @include grid(4);
+// .grid-wrapper {
+//   @include grid(4);
 
-  &--tidy {
-    @include grid(3);
-  }
-}
+//   &--tidy {
+//     @include grid(3);
+//   }
+// }

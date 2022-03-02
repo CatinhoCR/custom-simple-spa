@@ -1,144 +1,144 @@
-@mixin side-padding {
-  padding-left: $padding-side-mobile;
-  padding-right: $padding-side-mobile;
+// Grid system
+// Generate semantic grid columns with these mixins.
+// Based from Bootstrap Grid System
 
-  @include break-min($md) {
-    padding-left: $padding-side-tablet;
-    padding-right: $padding-side-tablet;
-  }
-
-  @include break-min($xl) {
-    padding-left: $padding-side-desktop;
-    padding-right: $padding-side-desktop;
-  }
-}
-
-// CSS Grid
-// mixin for site grid layout wrapper
-// TODO: Deprecated, remove from everywhere. Replace with new stuff
-$default-grid-gutter: 20px;
-@mixin grid(
-  $col: 4,
-  $col-gutter: $default-grid-gutter,
-  $row-gutter: $default-grid-gutter
-) {
-  display: grid;
-  grid-template-columns: repeat($col, 1fr);
-  gap: $row-gutter $col-gutter;
-}
-
-// SEE: https://github.com/twbs/bootstrap/blob/main/scss/mixins/_breakpoints.scss
-@function breakpoint-prefx($name, $breakpoints: $breakpoints) {
-  @return if(break-min($name, $breakpoints) == null, '', '#{$name}');
-}
-
-// Mixin to create container div css grid
-// TODO: add sizes
-@mixin container($size: xl) {
-  @include side-padding;
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-
-  @if $size == sm {
-    @include break-min($sm) {
-      max-width: $sm;
-    }
-    @include break-min($md) {
-      max-width: $sm + 100;
-    }
-  } @else if $size == md {
-    @include break-min($md) {
-      max-width: $md;
-    }
-  } @else if $size == lg {
-    @include break-min($lg) {
-      max-width: $lg;
-    }
-  } @else if $size == xl {
-    @include break-min($lg) {
-      max-width: $lg;
-    }
-
-    @include break-min($xl) {
-      max-width: $xl;
-    }
-  } @else if $size == xxl {
-    @include break-min($xxl) {
-      max-width: $xxl;
-    }
-  } @else if $size == full {
-    max-width: 2400px;
-  } @else {
-    @error 'unknown size #{$size}';
-  }
-}
-
-// Flexbox Grid Normal Row for now
-@mixin row($align: flex-start, $justify: flex-start) {
+@mixin row($gutter: $grid-gutter-width) {
+  --#{$var-prefix}gutter-x: #{$gutter};
+  --#{$var-prefix}gutter-y: 0;
   display: flex;
-  align-items: $align;
-  justify-content: $justify;
-  flex-direction: column;
-  position: relative;
-
-  @include break-min($sm) {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+  flex-wrap: wrap;
+  // margin-top: calc(var(--#{$var-prefix}gutter-y) * -1);
+  // margin-right: calc(var(--#{$var-prefix}gutter-x) * -0.5);
+  // margin-left: calc(var(--#{$var-prefix}gutter-x) * -0.5);
+  margin-top: calc(var(--#{$var-prefix}gutter-y) * -1);
+  margin-right: calc(var(--#{$var-prefix}gutter-x) / -2);
+  margin-left: calc(var(--#{$var-prefix}gutter-x) / -2);
 }
 
-@mixin col($bp: $sm, $size: 12, $columns: $grid-columns) {
-  position: relative;
-  flex: 0 0 auto;
-  max-width: 100%;
+@mixin make-col-ready($gutter: $grid-gutter-width) {
+  // Add box sizing if only the grid is loaded
+  // box-sizing: if(variable-exists(include-column-box-sizing) and $include-column-box-sizing, border-box, null);
+  // Prevent columns from becoming too narrow when at smaller grid tiers by
+  // always setting `width: 100%;`. This works because we set the width
+  // later on to override this initial width.
+  flex-shrink: 0;
   width: 100%;
-  padding: 0 rem(15);
-  margin-bottom: rem(20);
+  max-width: 100%; // Prevent `.col-auto`, `.col` (& responsive variants) from breaking out the grid
+  padding-right: calc(var(--#{$var-prefix}gutter-x) / 2); // * 0.5
+  padding-left: calc(var(--#{$var-prefix}gutter-x) / 2);
+  margin-top: var(--#{$var-prefix}gutter-y);
+}
 
-  @include break-min($bp) {
-    flex-basis: 0;
-    flex-grow: 1;
+@mixin col($size: false, $columns: $grid-columns) {
+  @if $size {
+    flex: 0 0 auto;
+    // width: percentage(divide($size, $columns));
+    // $num: div($size, $columns);
+    // @debug $num;
     width: percentage($size / $columns);
+  } @else {
+    flex: 1 1 0;
+    max-width: 100%;
   }
 }
 
-@mixin make-col($size, $bp, $columns: $grid-columns) {
-  @include break-min($bp) {
-    width: percentage($size / $columns);
-    flex-grow: 0;
-    flex-basis: auto;
+@mixin make-col-auto() {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  @if $size {
+    margin-left: percentage($size / $columns);
+  } @else {
+    margin-left: 0;
+  }
+  // $num: divide($size, $columns);
+  // margin-left: if($num == 0, 0, percentage($num));
+  // margin-left: if($num == 0, 0, percentage($size / $columns));
+}
+
+@mixin row-cols($count) {
+  > * {
+    flex: 0 0 auto;
+    width: divide(100%, $count);
   }
 }
 
-// TODO: grid based layout
-// https://travishorn.com/responsive-grid-in-2-minutes-with-css-grid-layout-4842a41420fe
-@mixin grid-row() {
-  @include grid(1, 10px, 10px);
-  justify-content: start;
-  align-content: start;
+// @todo determine if we need this other mixin from BS
+// @see https://github.com/twbs/bootstrap/blob/452e2f068941a1fecb84e081660765d90c167249/scss/mixins/_grid.scss#L62
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
 
-  @include break-min($sm) {
-    @include grid(2, 10px, 10px);
-  }
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
 
-  @include break-min($md) {
-    @include grid(3, 10px, 10px);
-  }
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+      .col#{$infix} {
+        flex: 1 0 0%; // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+      }
 
-  @include break-min($lg) {
-    @include grid(4, 20px, 20px);
-  }
+      .row-cols#{$infix}-auto > * {
+        @include make-col-auto();
+      }
 
-  @include break-min($xl) {
-    @include grid(6, 20px, 20px);
+      @if $grid-row-columns > 0 {
+        @for $i from 1 through $grid-row-columns {
+          .row-cols#{$infix}-#{$i} {
+            @include row-cols($i);
+          }
+        }
+      }
+
+      .col#{$infix}-auto {
+        @include make-col-auto();
+      }
+
+      @if $columns > 0 {
+        @for $i from 1 through $columns {
+          .col#{$infix}-#{$i} {
+            @include col($i, $columns);
+          }
+        }
+
+        // `$columns - 1` because offsetting by the width of an entire row isn't possible
+        @for $i from 0 through ($columns - 1) {
+          @if not ($infix == '' and $i == 0) { // Avoid emitting useless .offset-0
+            .offset#{$infix}-#{$i} {
+              @include make-col-offset($i, $columns);
+            }
+          }
+        }
+      }
+
+      // Gutters
+      //
+      // Make use of `.g-*`, `.gx-*` or `.gy-*` utilities to change spacing between the columns.
+      @each $key, $value in $gutters {
+        .g#{$infix}-#{$key},
+        .gx#{$infix}-#{$key} {
+          --#{$var-prefix}gutter-x: #{$value};
+        }
+
+        .g#{$infix}-#{$key},
+        .gy#{$infix}-#{$key} {
+          --#{$var-prefix}gutter-y: #{$value};
+        }
+      }
+    }
   }
 }
 
-// Offsets
-@mixin make-col-offset($size, $bp, $columns: $grid-columns) {
-  $num: $size / $columns;
-  @include break-min($bp) {
-    margin-left: if($num == 0, 0, percentage($num));
-  }
+@mixin grid() {
+  // @deprecated
 }
+
+// @for $width from 1 through $columns {
+// 	.col-#{$width} {
+// 		flex-basis: $width / $columns * 100%;
+// 	}
+// }

@@ -15,12 +15,6 @@
     fill: $value !important;
   }
 
-  .fxmicon-#{$key} {
-    path {
-      stroke: $value !important;
-    }
-  }
-
   .button {
     &--#{$key} {
       background-color: $value;
@@ -61,7 +55,7 @@
           &:hover {
             border-color: $value;
             background-color: $value;
-            color: transparent;
+            color: $white !important;
 
             .fxm-icon {
               color: transparent;

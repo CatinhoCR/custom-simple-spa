@@ -2,8 +2,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   color: $white;
-  background-color: $red;
-  border: 1px solid $red;
+  background-color: $green;
+  border: 1px solid $green;
   height: rem(42);
   // border-radius: rem(4);
   padding: rem(8) rem(30);
@@ -24,16 +24,16 @@
   cursor: pointer;
 
   &:hover {
-    background-color: darken($red, 10%);
-    border-color: darken($red, 10%);
+    background-color: darken($green, 10%);
+    border-color: darken($green, 10%);
     color: $white;
   }
 
   &--hov {
     &-lighten {
       &:hover {
-        background-color: scale-color($red, $lightness: 20%);
-        border-color: scale-color($red, $lightness: 20%);
+        background-color: scale-color($green, $lightness: 20%);
+        border-color: scale-color($green, $lightness: 20%);
       }
     }
   }
@@ -71,6 +71,14 @@
     padding: rem(13) rem(30);
     height: rem(52);
     font-size: rem(15);
+  }
+
+  // Full width
+  &--full {
+    padding: rem(16) rem(30);
+    height: rem(52);
+    font-size: rem(16);
+    width: 100%;
   }
 
   // Pill Shaped Buttons
@@ -161,28 +169,13 @@
   // TODO: Icons colors and props
   &--outline {
     background-color: transparent;
-    color: $red;
+    color: $green;
 
     &:hover {
-      background-color: $red;
+      background-color: $green;
       color: $white;
     }
   }
   // TODO: Buttons with Text-Icon
   // TODO: Circle buttons
-
-  &--transparent {
-    background-color: transparent;
-    color: $white;
-    border-color: transparent;
-
-    .button__text{
-      color: $white;
-    }
-
-    &:hover {
-      background-color: transparent;
-      border-color: transparent;
-    }
-  }
 }

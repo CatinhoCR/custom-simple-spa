@@ -8,6 +8,7 @@ dist
 # temporary
 assets/img/icons
 bak-*.*
+bak-*/
 
 # misc
 .DS_Store
