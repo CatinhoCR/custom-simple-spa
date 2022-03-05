@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production --config config/webpack.prod.js",
-    "dev": "webpack serve --mode development --config config/webpack.dev.js"
+    "dev": "webpack serve --mode development --env development --config config/webpack.dev.js"
   },
   "repository": "git+https://github.com/CatinhoCR/scss-es6-webpack-boilerplate.git",
   "author": "Cato <cato.castques@gmail.com>",

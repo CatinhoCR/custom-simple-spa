@@ -10,7 +10,14 @@
 @import 'base/utils';
 @import 'base/globals';
 
+// Layout
+@import 'layout/theme';
+
+// Components
 @import 'components/buttons';
+
+// Blocks
+// @import 'blocks/';
 
 // Helpers and Overrides (Inspired in tailwind.css)
 @import 'helpers/color-classes';

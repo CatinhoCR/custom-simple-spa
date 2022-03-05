@@ -2,7 +2,25 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const webpack = require('webpack')
+
 const paths = require('./paths')
+
+/**
+ * This is the base config for webpack which is used
+ * by both webpack.dev.js and webpack.prod.js
+ *
+ * It defines the directories of our entry file and
+ * output (built) files as well as loaders for js,
+ * css, fonts, images and Modernizr.
+ */
+ const env = process.env.NODE_ENV
+ const isDevelopment = env === 'development'
+
+if (isDevelopment) {
+// only enable hot in development
+  plugins.push(new webpack.HotModuleReplacementPlugin())
+}
 
 module.exports = {
   // Where webpack looks to start building the bundle

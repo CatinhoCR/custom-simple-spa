@@ -2,6 +2,8 @@ const { merge } = require('webpack-merge')
 
 const common = require('./webpack.common')
 
+const paths = require('./paths')
+
 module.exports = merge(common, {
   // Set the mode to development or production
   mode: 'development',
@@ -16,6 +18,10 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     port: 3000,
+    watchFiles: [
+      `${paths.src}/*.html`,
+      `${paths.src}/**/*.scss`
+    ]
   },
 
   module: {
