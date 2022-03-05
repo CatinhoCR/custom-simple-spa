@@ -20,7 +20,8 @@ module.exports = merge(common, {
     port: 3000,
     watchFiles: [
       `${paths.src}/*.html`,
-      `${paths.src}/**/*.scss`
+      `${paths.src}/**/*.scss`,
+      `${paths.src}/**/*.js`
     ]
   },
 
