@@ -1,6 +1,7 @@
 // Get raw value
 @function get-value($number) {
-  @return $number / ($number * 0 + 1);
+  // @return $number / ($number * 0 + 1);
+  @return math.div($number, ($number * 0 + 1));
 }
 
 /* Remove the unit of a length
@@ -26,12 +27,14 @@
     $base: strip-units($base);
   }
 
-  @return ($pxval / $base) * 1rem;
+  @return math.div($pxval, $base) * 1rem;
+  // @return ($pxval / $base) * 1rem;
 }
 
 // Covert lineheight px to unitless
 @function lh($line-height, $font-size) {
-  @return get-value($line-height / $font-size);
+
+  @return get-value(math.div($line-height, $font-size));
 }
 
 // Ascending

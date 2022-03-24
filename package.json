@@ -1,41 +1,83 @@
 {
-  "name": "modern-simple-frontend-boilerplate",
+  "name": "modern-frontend-boilerplate",
+  "author": "Cato <hello@cato506.com> (https://cato506.com)",
   "version": "1.0.0",
   "description": "Webpack 5, SCSS, modern JS and live reloading. Among many other cool features.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production --config config/webpack.prod.js",
-    "dev": "webpack serve --mode development --env development --config config/webpack.dev.js"
-  },
-  "repository": "git+https://github.com/CatinhoCR/scss-es6-webpack-boilerplate.git",
-  "author": "Cato <cato.castques@gmail.com>",
-  "license": "ISC",
+  "homepage": "https://github.com/CatinhoCR/modern-frontend-boilerplate#readme",
+  "browserslist": [
+    "last 2 versions",
+    "> 5%"
+  ],
+  "contributors": [],
   "bugs": {
-    "url": "https://github.com/CatinhoCR/scss-es6-webpack-boilerplate/issues"
+    "url": "https://github.com/CatinhoCR/modern-frontend-boilerplate/issues"
   },
-  "homepage": "https://github.com/CatinhoCR/scss-es6-webpack-boilerplate#readme",
+  "keywords": [
+    "webpack",
+    "boilerplate",
+    "template",
+    "setup"
+  ],
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:CatinhoCR/modern-frontend-boilerplate.git"
+  },
+  "scripts": {
+    "build": "webpack --mode=production --config config/webpack.prod.js",
+    "dev": "webpack serve --mode=development --env development --config config/webpack.dev.js",
+    "lint": "eslint 'src/**/*.js' || true",
+    "prettify": "prettier --write 'src/**/*.js'"
+  },
   "devDependencies": {
-    "@babel/core": "^7.16.12",
+    "@babel/core": "^7.17.8",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
-    "babel-loader": "^8.2.3",
+    "autoprefixer": "^10.4.4",
+    "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.4",
     "cross-env": "^7.0.3",
-    "css-loader": "^6.5.1",
+    "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
-    "eslint": "^8.10.0",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-import-resolver-webpack": "^0.13.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.5.3",
-    "postcss": "^8.4.7",
+    "image-minimizer-webpack-plugin": "^3.2.3",
+    "imagemin": "^8.0.1",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.1",
+    "merge": "^2.1.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "minimist": "^1.2.6",
+    "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
-    "sass": "^1.49.4",
-    "sass-loader": "^12.4.0",
+    "sass": "^1.49.9",
+    "sass-lint": "^1.13.1",
+    "sass-loader": "^12.6.0",
+    "shelljs": "^0.8.5",
     "style-loader": "^3.3.1",
-    "webpack": "^5.68.0",
+    "terser-webpack-plugin": "^5.3.1",
+    "trim-newlines": "^4.0.2",
+    "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {},
+  "resolutions": {
+    "merge": "^2.1.1",
+    "minimist": "^1.2.6",
+    "trim-newlines": "^4.0.2",
+    "shelljs": "^0.8.5"
   }
 }

@@ -9,6 +9,7 @@ dist
 assets/img/icons
 bak-*.*
 bak-*/
+**/*-old.*
 
 # misc
 .DS_Store
