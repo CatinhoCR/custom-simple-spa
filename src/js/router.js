@@ -22,7 +22,7 @@ class RoutingModule {
       .add('', () => {
         // @todo Wildcard route handling and AUTH GUARDS
         console.log('webpack starterkit catowl') // eslint-disable-line no-console
-        this.body.innerHTML = ''
+        // this.body.innerHTML = ''
         const intro = 'Welcome, this is a pseudo base route or 404. Meaning view still to be done.'
         const pageTitle = document.createElement('h1')
         pageTitle.classList.add('heading', 'heading--md')

@@ -3,6 +3,10 @@ import RouterModule from 'js/router'
 // const css = require('../scss/main.scss') // eslint-disable-line no-unused-vars
 import 'styles/app.scss'
 
+// if (process.env.NODE_ENV === 'development') {
+//   require('./index.html')
+// }
+
 // Hot reloading (for development only)
 if (module.hot) {
   module.hot.accept()
