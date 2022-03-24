@@ -1,10 +1,26 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const webpack = require('webpack')
 
-const paths = require('./paths')
+const environment = require('./env.config')
+
+// Maybe delete or tweak
+const templateFiles = fs.readdirSync(environment.paths.src)
+  .filter((file) => path.extname(file).toLowerCase() === '.html');
+
+const htmlPluginEntries = templateFiles.map((template) => new HtmlWebpackPlugin({
+  inject: true,
+  hash: false,
+  filename: template,
+  template: path.resolve(environment.paths.src, template),
+  favicon: path.resolve(environment.paths.src, 'images', 'favicon.png'),
+}));
 
 /**
  * This is the base config for webpack which is used
@@ -24,15 +40,19 @@ if (isDevelopment) {
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [paths.src + '/index.js'],
+  entry: {
+    app: path.resolve(environment.paths.src, 'index.js'),
+  },
+  // entry: [environment.paths.src + '/index.js'],
 
   // Where webpack outputs the assets and bundles
   output: {
-    path: paths.build,
+    path: environment.paths.build,
     filename: '[name].bundle.js',
-    publicPath: '/',
+    // publicPath: '/',
   },
 
+  /*
   // Customize the webpack build process
   plugins: [
     // Removes/cleans build folders and unused assets when rebuilding
@@ -42,7 +62,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: paths.public,
+          from: environment.paths.public,
           to: 'assets',
           globOptions: {
             ignore: ['*.DS_Store'],
@@ -56,32 +76,111 @@ module.exports = {
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
       title: 'webpack Boilerplate',
-      // favicon: paths.src + '/images/favicon.png',
-      template: paths.src + '/index.html', // template file
+      favicon:  path.resolve(environment.paths.src, 'images', 'favicon.png'),
+      template:  path.resolve(environment.paths.src, 'index.html'), // template file
       filename: 'index.html', // output file
     }),
   ],
+  */
 
-  // Determine how modules within the project are treated
   module: {
     rules: [
-      // JavaScript: Use Babel to transpile JavaScript files
-      { test: /\.js$/, use: ['babel-loader'] },
-
-      // Images: Copy image files to build folder
-      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
-
-      // Fonts and SVGs: Inline files
-      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
+      {
+        test: /\.((c|sa|sc)ss)$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+      {
+        test: /\.(png|gif|jpe?g|svg)$/i,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: environment.limits.images,
+          },
+        },
+        generator: {
+          filename: 'images/design/[name].[hash:6][ext]',
+        },
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: environment.limits.images,
+          },
+        },
+        generator: {
+          filename: 'images/design/[name].[hash:6][ext]',
+        },
+      },
     ],
   },
 
+  optimization: {
+    minimizer: [
+      '...',
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            // Lossless optimization with custom option
+            // Feel free to experiment with options for better result for you
+            plugins: [
+              ['gifsicle', { interlaced: true }],
+              ['jpegtran', { progressive: true }],
+              ['optipng', { optimizationLevel: 5 }],
+              // Svgo configuration here https://github.com/svg/svgo#configuration
+              [
+                'svgo',
+                {
+                  plugins: [
+                    {
+                      name: 'removeViewBox',
+                      active: false,
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      }),
+    ],
+  },
+
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    }),
+    new CleanWebpackPlugin({
+      verbose: true,
+      cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json'],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(environment.paths.src, 'images', 'content'),
+          to: path.resolve(environment.paths.build, 'images', 'content'),
+          toType: 'dir',
+          globOptions: {
+            ignore: ['*.DS_Store', 'Thumbs.db'],
+          },
+        },
+      ],
+    }),
+  ].concat(htmlPluginEntries),
+
   resolve: {
-    modules: [paths.src, 'node_modules'],
+    modules: [environment.paths.src, 'node_modules'],
     extensions: ['.js', '.jsx', '.json'],
     alias: {
-      '@': paths.src,
-      assets: paths.public,
+      '@': environment.paths.src,
+      assets: environment.paths.public,
     },
   },
 }
