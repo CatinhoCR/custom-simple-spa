@@ -1,4 +1,6 @@
 import RouterModule from 'js/router'
+
+import drawer from './drawer/drawer'
 // Include css for webpack (for development only)
 // const css = require('../scss/main.scss') // eslint-disable-line no-unused-vars
 import 'styles/app.scss'
@@ -19,6 +21,7 @@ class App {
   }
 
   init() {
+    drawer.init()
     RouterModule.init(this.body)
   }
 }

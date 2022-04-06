@@ -27,7 +27,7 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     watchFiles: [
-      `${environment.paths.src}/*.html`,
+      `${environment.paths.src}/**/*.html`,
       `${environment.paths.src}/**/*.scss`,
       `${environment.paths.src}/**/*.js`
     ],
