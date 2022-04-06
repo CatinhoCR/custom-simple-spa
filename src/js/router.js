@@ -4,7 +4,7 @@ import contact from '../contact/contact'
 
 class RoutingModule {
   constructor() {
-    this.viewContainer = document.querySelector('#view-container')
+    this.viewContainer = document.querySelector('#main')
     this.router()
   }
 
@@ -14,14 +14,11 @@ class RoutingModule {
       mode: 'hash',
       root: '/',
     })
-    // @todo Login, Session Cookies, Auth Guards, Set Dynamic Token session
-    // @todo Actual routes and get/set query params and resp
     router
       .add('contact', () => {
         contact.init(this.viewContainer)
       })
       .add('', () => {
-        // @todo Wildcard route handling and AUTH GUARDS
         console.log('webpack starterkit catowl') // eslint-disable-line no-console
         this.viewContainer.innerHTML = ''
         const intro = 'Welcome, this is a pseudo base route or 404. Meaning view still to be done.'

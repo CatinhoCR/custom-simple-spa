@@ -1,13 +1,8 @@
-import RouterModule from 'js/router'
+import RouterModule from './js/router'
+import { Header } from './js/header'
 
-import drawer from './drawer/drawer'
 // Include css for webpack (for development only)
-// const css = require('../scss/main.scss') // eslint-disable-line no-unused-vars
 import 'styles/app.scss'
-
-// if (process.env.NODE_ENV === 'development') {
-//   require('./index.html')
-// }
 
 // Hot reloading (for development only)
 if (module.hot) {
@@ -17,14 +12,13 @@ if (module.hot) {
 class App {
   constructor(el) {
     this.body = el
-    // this.view = document.querySelector('#view-container')
+    this.header = new Header()
     this.init()
   }
 
   init() {
-    drawer.init()
-    // RouterModule.init(this.view)
     RouterModule.init()
+    this.header.init()
   }
 }
 

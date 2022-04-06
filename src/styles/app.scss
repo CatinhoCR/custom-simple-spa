@@ -16,13 +16,11 @@
 @import 'layout/theme';
 
 // Components
-@import 'components/hamburger';
 @import 'components/buttons';
-
+@import 'components/nav';
 
 // Blocks
-@import 'blocks/drawer';
-@import 'blocks/nav';
+@import 'blocks/header';
 
 // Helpers and Overrides (Inspired in tailwind.css)
 @import 'helpers/color-classes';

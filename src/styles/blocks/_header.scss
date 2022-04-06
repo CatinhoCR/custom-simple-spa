@@ -1,0 +1,7 @@
+.header {
+  @include flex-children(center, space-between);
+
+  &__brand {
+    max-width: rem(200);
+  }
+}
