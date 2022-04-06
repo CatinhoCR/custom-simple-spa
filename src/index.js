@@ -17,18 +17,20 @@ if (module.hot) {
 class App {
   constructor(el) {
     this.body = el
+    // this.view = document.querySelector('#view-container')
     this.init()
   }
 
   init() {
     drawer.init()
-    RouterModule.init(this.body)
+    // RouterModule.init(this.view)
+    RouterModule.init()
   }
 }
 
 const app = {
   init() {
-    const wrapperEl = document.querySelector('#root')
+    const wrapperEl = document.querySelector('#app')
     if (wrapperEl) {
       const app = new App(wrapperEl) // eslint-disable-line no-unused-vars
     }
