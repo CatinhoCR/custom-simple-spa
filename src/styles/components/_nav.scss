@@ -1,0 +1,9 @@
+.nav {
+  &__menu {
+    @include flex-children(center, space-between);
+  }
+
+  &__item {
+    margin-right: rem(20);
+  }
+}
