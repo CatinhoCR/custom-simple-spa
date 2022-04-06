@@ -17,6 +17,7 @@ const templateFiles = fs.readdirSync(environment.paths.src)
 const htmlPluginEntries = templateFiles.map((template) => new HtmlWebpackPlugin({
   inject: true,
   hash: false,
+  // title: environment.title,
   filename: template,
   template: path.resolve(environment.paths.src, template),
   favicon: path.resolve(environment.paths.src, 'images', 'favicon.png'),
@@ -52,6 +53,10 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
       {
         test: /\.((c|sa|sc)ss)$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],

@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  title: 'Catinho Webpack5 Boilerplate',
   paths: {
     // Source files
     src: path.resolve(__dirname, '../src'),
