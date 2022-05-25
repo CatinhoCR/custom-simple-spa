@@ -1,0 +1,90 @@
+.post-card {
+  $self: &;
+  position: relative;
+  background-color: $white;
+  border-radius: rem(6);
+  text-align: left;
+  overflow: hidden;
+  margin-bottom: rem(40);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+  }
+
+  &__cover {
+    position: relative;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    background-color: $color-light-border;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: rem(40) rem(20);
+  }
+
+  &__title {
+    @extend .heading--sm;
+    margin-bottom: rem(20);
+  }
+
+  &__description {
+    margin-bottom: rem(20);
+  }
+
+  &--featured {
+    #{ $self }__title {
+      @extend .heading--md;
+    }
+  }
+
+  &--clipped {
+    #{ $self }__image-wrapper {
+      clip-path: url('#post-card-bottom-clip');
+    }
+  }
+}
+
+@include break-min($md) {
+  .post-card {
+    $self: &;
+
+    &--featured {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      #{ $self }__cover {
+        flex: 0 0 calc(100% / 3);
+        margin-right: calc(100% / 15);
+        display: flex;
+      }
+
+      #{ $self }__img-wrapper img {
+        @include object-fit();
+      }
+
+      #{ $self }__body {
+        flex: 1;
+        padding: rem(40) calc(100% / 15) rem(40) rem(20);
+      }
+    }
+
+    &--clipped {
+      #{ $self }__image-wrapper {
+        clip-path: url('#post-card-right-clip');
+
+        img {
+          @include object-fit();
+        }
+      }
+    }
+  }
+}

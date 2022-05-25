@@ -1,0 +1,208 @@
+.hamburger {
+  $self: &;
+
+  &__trigger {
+    position: relative;
+    z-index: z('notice-bars');
+  }
+
+  &-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    max-height: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: z('navigation');
+    background-color: $red;
+    transition: max-height 0.2s ease;
+
+    &__inner {
+      @include container;
+      padding: 0 rem(20) rem(20);
+    }
+
+    &__trigger {
+      line-height: 0;
+    }
+
+    &__header {
+      @include flex-children(center, flex-start);
+      max-height: $nav-height-mobile;
+      margin-bottom: rem(20);
+    }
+
+    &__logo {
+      margin-left: rem(10);
+      width: rem(83);
+      line-height: 0;
+    }
+
+    &__body {
+      display: block;
+      padding: rem(100) 0;
+
+      &:hover {
+        a {
+          opacity: 0.5;
+        }
+      }
+
+      a {
+        @extend .heading, .heading--md, .text-white;
+        font-size: rem(28);
+        display: inline-block;
+        margin-bottom: rem(20);
+        transition: opacity 0.2s ease;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &__footer {
+      max-height: 0;
+      height: auto;
+      background-color: $warm-white;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    &--open {
+      overflow: hidden;
+    }
+
+    &--active {
+      max-height: 100vh;
+      overflow-y: scroll;
+
+      #{ $self }__footer {
+        max-height: rem(400);
+        padding: rem(20);
+      }
+    }
+  }
+
+  &-icon {
+    height: rem(40);
+    width: rem(40);
+    max-width: rem(40);
+
+    &__line {
+      fill: none;
+      stroke: $dark-red;
+      stroke-width: 6;
+      transition: transform 1s ease, stroke-dasharray 1s cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &--first {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+      }
+
+      &--second {
+        stroke-dasharray: 60 60;
+        stroke-width: 6;
+      }
+
+      &--third {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+      }
+
+      &--arrow {
+        stroke-width: 6;
+        stroke-dasharray: 0 85;
+      }
+    }
+
+    // Turns the Hamburger into an X icon
+    &--open {
+      .hamburger-icon {
+        &__line {
+          stroke: $white;
+
+          &--first {
+            stroke-dasharray: 90 207;
+            stroke-dashoffset: -134;
+            stroke-width: 6;
+          }
+
+          &--second {
+            stroke-dasharray: 1 60;
+            stroke-dashoffset: -30;
+            stroke-width: 6;
+          }
+
+          &--third {
+            stroke-dasharray: 90 207;
+            stroke-dashoffset: -134;
+            stroke-width: 6;
+          }
+        }
+      }
+    }
+
+    // Arrows
+    &--arrow {
+      .hamburger-icon {
+        &__line {
+          &--first {
+            stroke-dasharray: 40 207;
+            transform: translateX(-30px);
+          }
+
+          &--second {
+            stroke-dasharray: 60 120;
+            stroke-dashoffset: 0;
+            stroke-width: 6;
+          }
+
+          &--third {
+            transform: translateX(-30px);
+            stroke-dasharray: 40 207;
+          }
+
+          &--arrow {
+            stroke-dasharray: 85 85;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include break-min($md) {
+  .hamburger-icon {
+    height: rem(50);
+    width: rem(50);
+  }
+}
+
+@include break-min($lg) {
+  .hamburger-nav {
+    &__inner {
+      padding: 0 rem(30) rem(30);
+    }
+
+    &__header {
+      max-height: $nav-height-desktop;
+      margin-bottom: rem(40);
+    }
+
+    &__logo {
+      width: rem(110);
+      margin-left: rem(15);
+    }
+
+    &__body {
+      a {
+        margin-bottom: rem(30);
+        font-size: rem(34);
+      }
+    }
+  }
+}

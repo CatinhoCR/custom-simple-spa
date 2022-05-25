@@ -35,8 +35,7 @@
     // width: percentage(divide($size, $columns));
     // $num: div($size, $columns);
     // @debug $num;
-    $width: calc($size / $columns);
-    width: percentage($width);
+    width: percentage($size / $columns);
   } @else {
     flex: 1 1 0;
     max-width: 100%;
@@ -50,8 +49,7 @@
 
 @mixin make-col-offset($size, $columns: $grid-columns) {
   @if $size {
-    $margin: calc($size / $columns);
-    margin-left: percentage($margin);
+    margin-left: percentage($size / $columns);
   } @else {
     margin-left: 0;
   }

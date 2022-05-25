@@ -1,3 +1,9 @@
+html {
+  margin: 0 !important;
+}
+
+// Default Text Elements extending for Wordpress Content Editor Consistency
+// Headings
 h1,
 h2,
 h3,
@@ -6,6 +12,27 @@ h5,
 h6 {
   @extend .heading;
 }
+
+// h1 {
+//   @extend .heading--xl;
+// }
+
+// h2 {
+//   @extend .heading--lg;
+// }
+
+// h3 {
+//   @extend .heading--md;
+// }
+
+// h4 {
+//   @extend .heading--sm;
+// }
+
+// h5,
+// h6 {
+//   @extend .heading--xs;
+// }
 
 a,
 p,
@@ -19,7 +46,7 @@ label {
 }
 
 a {
-  color: $mid-blue;
+  @extend .link;
   transition: all 0.2s ease-in-out;
 
   &:hover {

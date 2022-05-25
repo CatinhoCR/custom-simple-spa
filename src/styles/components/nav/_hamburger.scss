@@ -4,7 +4,7 @@
 
   &__line {
     fill: none;
-    stroke: $dark-red;
+    stroke: $dark-blue;
     stroke-width: 6;
     transition: transform 1s ease, stroke-dasharray 1s cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -86,7 +86,7 @@
           &-arrow {
             stroke-dasharray: 85 85;
             // stroke-width: 6;
-            // fill: $dark-red;
+            // fill: $crimson;
           }
         }
       }
@@ -94,16 +94,16 @@
   }
 }
 
-// @include break-min($xs) {
-//   .hamburger-icon {
-//     height: rem(40);
-//     width: rem(40);
-//   }
-// }
+@include break-min($sm) {
+  .hamburger-icon {
+    height: rem(40);
+    width: rem(40);
+  }
+}
 
-// @include break-min($sm) {
-//   .hamburger-icon {
-//     height: rem(50);
-//     width: rem(50);
-//   }
-// }
+@include break-min($md) {
+  .hamburger-icon {
+    height: rem(50);
+    width: rem(50);
+  }
+}

@@ -1,6 +1,7 @@
 import Router from './config/routing'
 
 import contact from '../contact/contact'
+import styleguide from '../styleguide/'
 
 class RoutingModule {
   constructor() {
@@ -19,6 +20,9 @@ class RoutingModule {
     router
       .add('contact', () => {
         contact.init(this.viewContainer)
+      })
+      .add('styleguide', () => {
+        styleguide.init(this.viewContainer)
       })
       .add('', () => {
         // @todo Wildcard route handling and AUTH GUARDS

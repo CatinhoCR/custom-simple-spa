@@ -1,0 +1,97 @@
+.split-module {
+  padding-top: rem(60);
+  padding-bottom: rem(60);
+  background-color: $warm-white;
+
+  &__title {
+    margin-top: rem(22);
+  }
+
+  &__signature {
+    margin-top: rem(20);
+  }
+
+  &__description {
+    margin-top: rem(5);
+  }
+
+  &__text {
+    width: 100%;
+    text-align: left;
+  }
+
+  &__image {
+    width: 100%;
+    text-align: right;
+    border-radius: 100%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .button {
+    margin-top: rem(20);
+  }
+}
+
+@include break-min($md) {
+  .split-module {
+    &--reverse {
+      .split-module__inner {
+        flex-flow: row-reverse;
+      }
+
+      .split-module__text {
+        padding-right: rem(116);
+        padding-left: 0;
+      }
+    }
+
+    &__inner {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__image {
+      width: 50%;
+    }
+
+    &__text {
+      width: 50%;
+      padding-left: rem(116);
+      padding-right: 0;
+    }
+  }
+}
+
+@include break-min($lg) {
+  .split-module {
+    padding-top: rem(80);
+
+    &__title {
+      margin-top: rem(60);
+    }
+
+    &__signature {
+      margin-top: rem(30);
+    }
+
+    &__description {
+      margin-top: rem(10);
+    }
+
+    .button {
+      margin-top: rem(30);
+    }
+  }
+}

@@ -9,6 +9,7 @@ dist
 assets/img/icons
 bak-*.*
 bak-*/
+*_old/
 **/*-old.*
 
 # misc

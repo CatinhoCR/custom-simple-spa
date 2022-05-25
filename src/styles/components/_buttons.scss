@@ -29,19 +29,21 @@
     color: $white;
   }
 
-  &--hov {
-    &-lighten {
-      &:hover {
-        background-color: scale-color($green, $lightness: 20%);
-        border-color: scale-color($green, $lightness: 20%);
-      }
-    }
-  }
-
   // TODO: Focus states
   &:focus {
     outline: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+  }
+
+  &--transparent {
+    background-color: transparent;
+    color: $white;
+    border-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+      border-color: transparent;
+    }
   }
 
   &--sws {
@@ -56,9 +58,10 @@
   }
 
   &__icon {
-    width: rem(16);
-    height: rem(16);
-    font-size: rem(16);
+    width: rem(24);
+    height: rem(24);
+    font-size: rem(24);
+    line-height: 0;
   }
 
   // Small Sized Button
@@ -95,8 +98,8 @@
   // Circle Shaped Buttons
   &--circle {
     border-radius: 50%;
-    width: rem(36);
-    height: rem(36);
+    width: rem(42);
+    height: rem(42);
     padding: 0;
     justify-content: center;
 
@@ -106,8 +109,8 @@
 
     &.button {
       &--md {
-        width: 48px;
-        height: 48px;
+        width: rem(36);
+        height: rem(36);
 
         .button {
           &__icon {
@@ -153,6 +156,8 @@
   // Button's & Icons
   &--with-icon {
     .button {
+      align-items: stretch;
+
       &__text {
         margin-left: 0;
         margin-right: rem(10);
