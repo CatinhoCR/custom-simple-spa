@@ -81,10 +81,7 @@ class DrawerSidebar {
    * TODO check catix forge wink for third level menu
    */
   onBackClick(target = null) {
-    console.log('back sub menu')
-    // this.subMenus = [].slice.call(
-    //   document.querySelectorAll('.drawer__flyout')
-    // )
+    // console.log('back sub menu')
     if (target) {
       this.menuItems.forEach(button => {
         if (target !== button) button.parentElement.classList.remove('active')
