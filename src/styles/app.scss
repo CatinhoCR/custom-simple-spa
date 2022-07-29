@@ -1,4 +1,8 @@
 @use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:color';
+@use 'sass:string';
 
 // Abstracts (Variables, Mixins, Functions)
 @import 'abstracts/functions';
@@ -13,14 +17,56 @@
 @import 'base/globals';
 
 // Layout
+@import 'layout/icons';
+// @import 'layout/drawer';
 @import 'layout/theme';
+// @import 'layout/section-blocks';
+// @import 'layout/admin';
+// @import 'layout/sidebars';
+@import 'layout/forms';
+// @import 'layout/tables';
+// @import 'layout/swipers';
 
-// Components
+// Components (smaller partials used inside of blocks - divided for ease of reference)
 @import 'components/buttons';
-@import 'components/nav';
+@import 'components/overlay';
+// @import 'components/dropdown';
+// @import 'components/pagination';
+// @import 'components/breadcrumbs';
+@import 'components/nav/nav-search';
+@import 'components/nav/hamburger';
+// @import 'components/social-media-nav';
+// @import 'components/cards/cards';
+@import 'components/cards/article-card';
+@import 'components/cards/post-card';
+@import 'components/cards/product-card';
+// @import 'components/cards/category-card';
+// @import 'components/cards/'
+// @import 'components/sliders/thumbs-gallery';
+// @import 'components/sliders/products-slider';
+//
+// @import 'components/single-step';
+// @import 'components/colored-wave';
 
-// Blocks
+// Blocks (standalone parts which are direct children of a page)
 @import 'blocks/header';
+// @import 'blocks/hero-banner';
+// @import 'blocks/footer';
+@import 'blocks/accordion';
+@import 'blocks/drawer-sidebar';
+@import 'blocks/split-module';
+// @import 'blocks/tabs-nav';
+// @import 'blocks/back-to-top';
+// @import 'blocks/gutenberg-blocks';
+// @import 'blocks/products-list';
+
+// Pages (styles specific to a certain template/page)
+@import 'pages/styleguide';
+// @import 'pages/shop';
+// @import 'pages/single-product';
+// @import 'pages/cart';
+// @import 'pages/blog-post';
+// @import 'pages/landing-page';
 
 // Helpers and Overrides (Inspired in tailwind.css)
 @import 'helpers/color-classes';

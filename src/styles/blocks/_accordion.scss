@@ -1,0 +1,74 @@
+.accordion {
+  &__heading {
+    padding: rem(20) 0;
+    cursor: pointer;
+    display: flex;
+    // justify-content: space-between;
+    justify-self: start;
+    border-bottom: solid 0.5px $color-light-border;
+    line-height: 1.38;
+  }
+
+  &__title {
+    margin-right: rem(40);
+  }
+
+  &__content {
+    max-height: 1px;
+    margin-top: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+
+    &-text {
+      padding: rem(20) rem(20) rem(30);
+      border-bottom: solid 0.5px $color-light-border;
+    }
+  }
+
+  &__panel {
+    &.open {
+      .icon--close {
+        display: block;
+      }
+
+      .icon--expand {
+        display: none;
+      }
+
+      .accordion {
+        &__content {
+          max-height: 2000px;
+          opacity: 1;
+          // background-color: $white;
+        }
+
+        &__content-text {
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+.icon--close {
+  display: none;
+}
+
+.icon--expand {
+  display: block;
+}
+
+@include break-min($lg) {
+  .accordion {
+    &__title {
+      letter-spacing: 0.83px;
+    }
+
+    &__content {
+      &-text {
+        padding: rem(30) rem(30) rem(40);
+      }
+    }
+  }
+}

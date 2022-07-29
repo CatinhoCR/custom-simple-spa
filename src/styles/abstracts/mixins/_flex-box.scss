@@ -1,6 +1,6 @@
 // Positioning
-// TODO: Deprecate
-@mixin flex-children ($align: flex-start, $justify: flex-start, $height: 100%) {
+
+@mixin flex-children($align: flex-start, $justify: flex-start, $height: 100%) {
   display: flex;
   align-items: $align;
   justify-content: $justify;

@@ -1,5 +1,10 @@
 .header {
-  @include flex-children(center, space-between);
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-end;
 
   &__brand {
     max-width: rem(200);

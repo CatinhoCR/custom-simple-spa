@@ -1,0 +1,18 @@
+.landing {
+  background-color: $black;
+  min-height: 100vh;
+
+  &__inner,
+  &__intro {
+    width: 100%;
+    max-width: 100%;
+
+    @include break-min($lg) {
+      @extend .container;
+    }
+  }
+
+  &__img {
+    margin: 0 auto;
+  }
+}

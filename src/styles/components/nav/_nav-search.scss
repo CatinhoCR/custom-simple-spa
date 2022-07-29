@@ -1,0 +1,159 @@
+.nav-search {
+  $self: &;
+  z-index: 0;
+  background-color: $white;
+  opacity: 0;
+  width: 100%;
+  max-height: 1px;
+  margin-top: 0;
+  position: absolute;
+  top: 100%;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+
+  &--open {
+    overflow: hidden;
+  }
+
+  &__toggler {
+    &-icon {
+      font-size: rem(20);
+      width: rem(22);
+    }
+
+    .search {
+      display: block;
+    }
+
+    .close {
+      display: none;
+    }
+
+    &.is-expanded {
+      .search {
+        display: none;
+      }
+
+      .close {
+        display: block;
+      }
+    }
+  }
+
+  &__form {
+    // @extend .container;
+    position: relative;
+    padding: rem(31) $padding-side-mobile;
+  }
+
+  &__field {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.04), 0 4px 7px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    padding: 0 rem(44) 0 0;
+    border: none;
+    font-family: $font-primary;
+    font-weight: 700;
+    font-size: rem(24);
+    line-height: 1.17;
+    letter-spacing: 0.5px;
+    color: $black;
+    vertical-align: middle;
+    text-indent: rem(8);
+    height: rem(60);
+
+    &::placeholder {
+      font-family: $font-primary;
+      font-weight: 700;
+      font-size: rem(16);
+      line-height: 1.17;
+      color: $light-grey;
+    }
+  }
+
+  &__submit {
+    display: none;
+    opacity: 0;
+    transition: all 0.2s ease;
+
+    &--mobile {
+      display: inline-block;
+      opacity: 1;
+      position: absolute;
+      right: rem(20);
+      height: rem(60);
+      cursor: pointer;
+      color: #fff;
+      background-color: $red;
+      font-size: rem(24);
+      text-align: center;
+      border-radius: 0;
+      width: rem(60);
+    }
+  }
+
+  &__overlay {
+    z-index: -1;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.2s ease;
+    background-color: rgba(0, 0, 0, 0.3);
+    max-height: 1px;
+  }
+
+  &.is-expanded {
+    overflow: visible;
+    z-index: z('search-nav');
+    max-height: 100vh;
+    opacity: 1;
+
+    #{ $self }__overlay {
+      z-index: z('overlay');
+      max-height: 100vh;
+      height: 100vh;
+      position: absolute;
+      top: 100%;
+      bottom: auto;
+      left: 0;
+      opacity: 1;
+    }
+  }
+}
+
+@include break-min($md) {
+  .nav-search {
+    $self: &;
+
+    &__form {
+      padding: rem(52) $padding-side-desktop;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+
+    &__field {
+      width: 80%;
+      line-height: 1.11;
+      font-size: rem(38);
+
+      &::placeholder {
+        letter-spacing: 0.5px;
+        font-size: rem(38);
+        line-height: 1.11;
+      }
+    }
+
+    &__submit {
+      width: 16%;
+      display: inline-block;
+      vertical-align: middle;
+      opacity: 0.4;
+    }
+
+    &.has-text {
+      #{ $self }__submit {
+        opacity: 1;
+      }
+    }
+  }
+}

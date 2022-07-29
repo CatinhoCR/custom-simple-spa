@@ -44,27 +44,10 @@
           background-color: transparent;
           color: $value;
 
-          .fxm-icon {
-            color: $value;
-
-            path {
-              fill: $value;
-            }
-          }
-
           &:hover {
             border-color: $value;
             background-color: $value;
             color: $white !important;
-
-            .fxm-icon {
-              color: transparent;
-
-              /* stylelint-disable-next-line */
-              path {
-                fill: transparent;
-              }
-            }
           }
 
           &-reverse {
