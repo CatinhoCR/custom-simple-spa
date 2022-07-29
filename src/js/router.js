@@ -1,6 +1,6 @@
 import Router from './config/routing'
 
-import contact from '../contact/contact'
+import contact from '../contact/'
 import styleguide from '../styleguide/'
 
 class RoutingModule {
@@ -30,9 +30,12 @@ class RoutingModule {
         this.viewContainer.innerHTML = ''
         const intro = 'Welcome, this is a pseudo base route or 404. Meaning view still to be done.'
         const pageTitle = document.createElement('h1')
-        pageTitle.classList.add('heading', 'heading--md')
+        pageTitle.classList.add('heading', 'heading--md', 'text-black', 'font-upper')
         pageTitle.innerHTML = intro
-        this.viewContainer.appendChild(pageTitle)
+        const wrapper = document.createElement("div")
+        wrapper.classList.add('page__title')
+        wrapper.appendChild(pageTitle)
+        this.viewContainer.appendChild(wrapper)
       })
   }
 }

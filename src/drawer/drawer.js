@@ -11,19 +11,24 @@ class DrawerSidebar {
     this.init();
   }
 
-  // Get initial data, selectors
+  /**
+   * Get initial data, selectors, inject HTML, call afterRender
+   */
   init() {
     this.isExpanded = false
-    this.isDocked = false
+    this.isDocked = false; // @todo
 
-    // this.openedSubmenu = document.querySelector('.drawer__flyout--open')
-    // this.openDetailsCss = 'drawer__flyout--sub-active'
+    this.openedSubmenu = document.querySelector('.drawer__flyout--open')
+    this.openDetailsCss = 'drawer__flyout--sub-active'
     this.elem.innerHTML = this.hamburgerHtml + this.navHtml;
-    this.render()
+    this.onCreated()
   }
 
-  //
-  render() {
+  /**
+   * @function onCreated()
+   *
+   */
+  onCreated() {
     if (this.isDocked) this.elem.classList.add('drawer--docked')
 
     this.drawer = document.querySelector('.drawer__nav')
@@ -38,14 +43,21 @@ class DrawerSidebar {
       document.querySelectorAll('.drawer__flyout')
     )
 
-    this.afterRender()
+    this.dropdownMenus = [].slice.call(
+      document.querySelectorAll('.drawer__sublink')
+    )
+
+    this.onMounted()
   }
 
-  //
-  afterRender() {
+  /**
+   * @function onMounted()
+   */
+  onMounted() {
     this.onTogglerClick();
-    // this.onSubmenuClick();
-    this.initScrollBtns();
+    this.onSubmenuClick();
+    this.onDropdownClick();
+    // this.initScrollBtns();
   }
 
   mainTogglerClasses() {
@@ -63,26 +75,32 @@ class DrawerSidebar {
     })
   }
 
-  onBackClick() {
-    // console.log('back sub menu')
+  /**
+   *
+   * @param {*} target
+   * TODO check catix forge wink for third level menu
+   */
+  onBackClick(target = null) {
+    console.log('back sub menu')
     // this.subMenus = [].slice.call(
     //   document.querySelectorAll('.drawer__flyout')
     // )
-    // function isThirdLevel(element) {
-    //   return element.classList.contains('drawer__flyout--sub-active')
-    // }
-    // if (this.subMenus.some(isThirdLevel)) {
-    //   this.openedSubmenu.classList.remove(this.openDetailsCss)
-    //   // this.detailsNav.classList.remove('active')
-    //   this.isExpanded = true
-    // } else {
-    //   this.openedSubmenu.classList.remove('drawer__flyout--open')
-    //   this.icon.classList.remove('hamburger-icon--arrow-left')
-    //   this.isExpanded = false
-    // }
+    if (target) {
+      this.menuItems.forEach(button => {
+        if (target !== button) button.parentElement.classList.remove('active')
+      })
+    }
+    if (this.openedSubmenu) this.openedSubmenu.classList.remove('drawer__flyout--open')
+    this.icon.classList.remove('hamburger-icon--arrow-left')
+    this.isExpanded = false
+    this.openedSubmenu = null
+    this.mainTogglerClasses()
     // this.subMenus.forEach(submenu => {})
   }
 
+  /**
+   *
+   */
   initScrollBtns () {
     // this.buttons = nav.querySelectorAll('.scroll-btn')
     this.menuItems.forEach(button => {
@@ -103,24 +121,30 @@ class DrawerSidebar {
     })
   }
 
+  /**
+   *
+   */
   onSubmenuClick() {
     this.menuItems.forEach(item => {
       item.addEventListener('click', e => {
         // Remove active classes
         this.menuItems.forEach(button => {
-          button.parentElement.classList.remove('active')
+          if (button !== item) button.parentElement.classList.remove('active')
+          // button.parentElement.classList.remove('active')
+          // if (button.parentElement.classList.contains('active')) button.parentElement.classList.remove('active')
         })
 
-        item.parentElement.classList.add('active')
+        item.parentElement.classList.toggle('active')
 
         // Get opened submenu, match closes it.
 
-        // const SubMenu = item.nextElementSibling
-        // if (SubMenu) {
-        //   this.toggleFlyout(SubMenu)
-        // } else {
-        //   this.onBackClick()
-        // }
+        const SubMenu = item.nextElementSibling
+        // console.log(SubMenu);
+        if (SubMenu) {
+          this.toggleFlyout(SubMenu)
+        } else {
+          this.onBackClick(e.target.parentElement)
+        }
       })
     })
   }
@@ -128,34 +152,41 @@ class DrawerSidebar {
   toggleFlyout(openSubmenu) {
     // console.log('toggle flyout')
     // // Check if it's diff sub menu item to open
-    // if (this.openedSubmenu !== openSubmenu) {
-    //   if (this.openedSubmenu) {
-    //     this.openedSubmenu.classList.remove('drawer__flyout--open')
-    //   }
-    //   this.openedSubmenu = openSubmenu
-    //   this.icon.classList.add('hamburger-icon--arrow-left')
-    //   openSubmenu.classList.add('drawer__flyout--open')
-    //   this.isExpanded = true
-    // } else {
-    //   openSubmenu.classList.remove('drawer__flyout--open')
-    //   this.icon.classList.remove('hamburger-icon--arrow-left')
-    //   this.isExpanded = !this.isExpanded
-    // }
+    if (this.openedSubmenu !== openSubmenu) {
+      if (this.openedSubmenu) {
+        this.openedSubmenu.classList.remove('drawer__flyout--open')
+      }
+      this.openedSubmenu = openSubmenu
+      this.icon.classList.add('hamburger-icon--arrow-left')
+      openSubmenu.classList.add('drawer__flyout--open')
+      this.isExpanded = true
+    } else {
+      this.openedSubmenu = null
+      openSubmenu.classList.remove('drawer__flyout--open')
+      this.icon.classList.remove('hamburger-icon--arrow-left')
+      this.isExpanded = !this.isExpanded
+    }
+  }
+
+  /**
+   * @todo
+   * Not implemented
+   * Meant to be used for dropdown menus from SUB menu item clicks
+   */
+  onDropdownClick() {
+    this.dropdownMenus.forEach(item => {
+      item.addEventListener('click', e => {
+        this.onBackClick(e.target.parentElement.parentElement)
+      })
+    })
   }
 }
 
 const sidebarDrawer = {
   init () {
     const wrapperEl = document.querySelector('#drawer-navigation')
-    // const wrapperEl = document.querySelectorAll('.vod-category-slider')
     if (wrapperEl !== null) {
-      // document.addEventListener('DOMContentLoaded', () => {
-        // const miscNav = new DrawerSidebar(wrapperEl) // eslint-disable-line no-unused-vars
         new DrawerSidebar(wrapperEl)
-        // wrapperEl.forEach(component => {
-        //   new VODCategorySlider(component) // eslint-disable-line no-new
-        // })
-      // })
     }
   },
 }

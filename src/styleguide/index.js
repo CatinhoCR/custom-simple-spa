@@ -1,4 +1,4 @@
-// import styleguideHtml from './styleguide.html'
+import styleguideHtml from './styleguide.html'
 
 class Styleguide {
   constructor(el) {
@@ -8,9 +8,9 @@ class Styleguide {
   }
 
   init() {
-    // if (!styleguideHtml || !this.container) return
+    if (!styleguideHtml || !this.container) return
     console.log('styleguide')
-    // this.container.innerHTML = styleguideHtml
+    this.container.innerHTML = styleguideHtml
 
     // this.afterRender()
   }

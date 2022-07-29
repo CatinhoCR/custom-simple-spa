@@ -7,6 +7,7 @@
   --#{$var-prefix}gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
+
   // margin-top: calc(var(--#{$var-prefix}gutter-y) * -1);
   // margin-right: calc(var(--#{$var-prefix}gutter-x) * -0.5);
   // margin-left: calc(var(--#{$var-prefix}gutter-x) * -0.5);
@@ -32,10 +33,11 @@
 @mixin col($size: false, $columns: $grid-columns) {
   @if $size {
     flex: 0 0 auto;
+
     // width: percentage(divide($size, $columns));
-    // $num: div($size, $columns);
+    $num: math.div($size, $columns);
     // @debug $num;
-    width: percentage($size / $columns);
+    width: math.percentage($num);
   } @else {
     flex: 1 1 0;
     max-width: 100%;
@@ -49,10 +51,12 @@
 
 @mixin make-col-offset($size, $columns: $grid-columns) {
   @if $size {
-    margin-left: percentage($size / $columns);
+    $offset: math.div($size, $columns);
+    margin-left: math.percentage($offset);
   } @else {
     margin-left: 0;
   }
+
   // $num: divide($size, $columns);
   // margin-left: if($num == 0, 0, percentage($num));
   // margin-left: if($num == 0, 0, percentage($size / $columns));
@@ -68,7 +72,6 @@
 // @todo determine if we need this other mixin from BS
 // @see https://github.com/twbs/bootstrap/blob/452e2f068941a1fecb84e081660765d90c167249/scss/mixins/_grid.scss#L62
 // Framework grid generation
-//
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
@@ -83,7 +86,7 @@
       }
 
       .row-cols#{$infix}-auto > * {
-        @include make-col-auto();
+        @include make-col-auto;
       }
 
       @if $grid-row-columns > 0 {
@@ -95,7 +98,7 @@
       }
 
       .col#{$infix}-auto {
-        @include make-col-auto();
+        @include make-col-auto;
       }
 
       @if $columns > 0 {
@@ -116,7 +119,6 @@
       }
 
       // Gutters
-      //
       // Make use of `.g-*`, `.gx-*` or `.gy-*` utilities to change spacing between the columns.
       @each $key, $value in $gutters {
         .g#{$infix}-#{$key},

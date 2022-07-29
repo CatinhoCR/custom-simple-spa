@@ -1,8 +1,8 @@
-// @import '../../node_modules/swiper/swiper.scss';
-// @import '../../node_modules/swiper/components/pagination/pagination.scss';
-// @import '../../node_modules/swiper/components/navigation/navigation.scss';
-// @import '../../node_modules/swiper/components/thumbs/thumbs.scss';
-// // @import '../../node_modules/swiper/components/lazy/lazy.scss';
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:color';
+@use 'sass:string';
 
 // Abstracts (Variables, Mixins, Functions)
 @import 'abstracts/functions';
@@ -15,6 +15,17 @@
 @import 'base/grid';
 @import 'base/utils';
 @import 'base/globals';
+
+// Layout
+@import 'layout/icons';
+// @import 'layout/drawer';
+@import 'layout/theme';
+// @import 'layout/section-blocks';
+// @import 'layout/admin';
+// @import 'layout/sidebars';
+@import 'layout/forms';
+// @import 'layout/tables';
+// @import 'layout/swipers';
 
 // Components (smaller partials used inside of blocks - divided for ease of reference)
 @import 'components/buttons';
@@ -48,17 +59,6 @@
 // @import 'blocks/back-to-top';
 // @import 'blocks/gutenberg-blocks';
 // @import 'blocks/products-list';
-
-// Layout
-@import 'layout/icons';
-// @import 'layout/drawer';
-// @import 'layout/theme';
-// @import 'layout/section-blocks';
-// @import 'layout/admin';
-// @import 'layout/sidebars';
-@import 'layout/forms';
-// @import 'layout/tables';
-// @import 'layout/swipers';
 
 // Pages (styles specific to a certain template/page)
 @import 'pages/styleguide';

@@ -11,6 +11,7 @@ bak-*.*
 bak-*/
 *_old/
 **/*-old.*
+*-old/
 
 # misc
 .DS_Store
@@ -20,3 +21,5 @@ yarn-error.log
 .yarnclean
 .vscode
 .idea
+yarn copy.locks
+drawer copy.js
