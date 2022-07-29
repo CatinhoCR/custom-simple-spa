@@ -6,10 +6,6 @@ build
 dist
 
 # temporary
-assets/img/icons
-bak-*.*
-bak-*/
-*_old/
 **/*-old.*
 *-old/
 

@@ -17,13 +17,11 @@ if (module.hot) {
 class App {
   constructor(el) {
     this.body = el
-    // this.view = document.querySelector('#view-container')
     this.init()
   }
 
   init() {
     drawer.init()
-    // RouterModule.init(this.view)
     RouterModule.init()
   }
 }
