@@ -1,6 +1,6 @@
 # Modern Frontend Boilerplate
 
-[Repo](https://github.com/CatinhoCR/frontend-webpack-boilerplate)
+[Repo](git@github.com:CatinhoCR/custom-simple-spa.git)
 
 **Webpack 5** Modern Boilerplate using **SCSS**, **ES6+**, **image optimization** and a simple **Single Page App router** to use for quickly kickstarting your templates or prototypes using HTML. Easy setup and customizing to dive right into your next front-end project while using modern development tools like **code linting**, **browser syncing** or **hot reloading**, among many other cool [features](#features).
 

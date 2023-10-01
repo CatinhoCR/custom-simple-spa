@@ -31,7 +31,10 @@ class DrawerSidebar {
   onCreated() {
     if (this.isDocked) this.elem.classList.add('drawer--docked')
 
+    this.page = document.querySelector('.page')
+    this.aside = document.querySelector('.drawer')
     this.drawer = document.querySelector('.drawer__nav')
+    this.header = document.querySelector('.drawer__header')
     this.toggler = document.querySelector('.drawer__toggler')
     this.icon = document.querySelector('.drawer__toggler-icon')
 
@@ -61,8 +64,11 @@ class DrawerSidebar {
   }
 
   mainTogglerClasses() {
+    this.page.classList.toggle('drawer__page')
+    this.aside.classList.toggle('drawer--open')
     this.icon.classList.toggle('hamburger-icon--open')
     this.drawer.classList.toggle('drawer__nav--open')
+    this.header.classList.toggle('drawer__header--visible')
   }
 
   onTogglerClick() {
@@ -72,6 +78,18 @@ class DrawerSidebar {
       } else {
         this.mainTogglerClasses()
       }
+    })
+
+    this.header.addEventListener('click', () => {
+      console.log(this.isExpanded);
+      if (this.isExpanded) {
+        this.onBackClick()
+      } else {
+        this.isDocked = !this.isDocked
+        if (this.isDocked) this.elem.classList.remove('drawer--docked')
+        this.mainTogglerClasses()
+      }
+
     })
   }
 
@@ -91,7 +109,8 @@ class DrawerSidebar {
     this.icon.classList.remove('hamburger-icon--arrow-left')
     this.isExpanded = false
     this.openedSubmenu = null
-    this.mainTogglerClasses()
+    this.header.innerHTML = 'Collapse Sidebar'
+    // this.mainTogglerClasses()
     // this.subMenus.forEach(submenu => {})
   }
 
@@ -157,11 +176,13 @@ class DrawerSidebar {
       this.icon.classList.add('hamburger-icon--arrow-left')
       openSubmenu.classList.add('drawer__flyout--open')
       this.isExpanded = true
+      this.header.innerHTML = 'Collapse Item Submenu'
     } else {
       this.openedSubmenu = null
       openSubmenu.classList.remove('drawer__flyout--open')
       this.icon.classList.remove('hamburger-icon--arrow-left')
       this.isExpanded = !this.isExpanded
+      this.header.innerHTML = 'Collapse Sidebar'
     }
   }
 
@@ -176,6 +197,14 @@ class DrawerSidebar {
         this.onBackClick(e.target.parentElement.parentElement)
       })
     })
+  }
+
+  collapseSidebar() {
+
+  }
+
+  shouldAddDropdownIcon() {
+
   }
 }
 

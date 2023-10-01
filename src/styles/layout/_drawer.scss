@@ -90,9 +90,9 @@ $flyout-bg: $dark-blue;
       overflow: hidden;
       padding: rem(16) rem(10) rem(16) 0;
 
-      &:hover {
-        overflow: visible;
-      }
+      // &:hover {
+      //   overflow: visible;
+      // }
 
       &.active {
         .drawer-nav__parent-icon,

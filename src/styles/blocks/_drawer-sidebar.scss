@@ -1,12 +1,24 @@
 .drawer {
   $self: &;
 
+  &--open {
+    #{ $self }__toggler {
+      left: $expanded-nav-width;
+      background-color: $warm-white;
+    }
+  }
+
+  &__page {
+    padding-left: $expanded-nav-width + rem(40);
+  }
+
   &__toggler {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
     padding: rem(6);
+    transition: all 0.4s ease-in-out;
 
     &-icon {
       font-size: rem(44);
@@ -38,14 +50,42 @@
     // }
   }
 
+  &__header {
+    // display: none;
+    // width: 0;
+    background-color: $sidebar-bg;
+    height: rem(56);
+    text-align: right;
+    padding: rem(20) rem(10);
+    text-transform: uppercase;
+    color: $warm-white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    transition: all 0.6s ease;
+    opacity: 0;
+    transform: translateX(-400px);
+    width: 100%;
+
+    &--visible {
+      // display: block;
+      // width: 100%;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    // &--collapse
+  }
+
   &__nav {
     background-color: $sidebar-bg;
     max-width: $docked-nav-width;
     width: 0;
     position: relative;
-    padding: rem(80) 0 rem(40);
+    padding: rem(60) 0 rem(20);
     height: 100%;
-    overflow: hidden;
+    overflow: hidden scroll;
     transform: translateX(-70px);
     transition: all 0.5s linear;
 
@@ -60,7 +100,7 @@
       transform: translateX(0);
       width: 100%;
 
-      &:hover,
+      // &:hover,
       &--open {
         max-width: $expanded-nav-width;
         transform: translateX(0);
@@ -70,9 +110,16 @@
   }
 
   &__list {
+    // max-height: calc(100vh - 130px);
+    // overflow-y: scroll;
+
     &--bottom {
       position: absolute;
       bottom: 0;
+
+      @media screen and (max-height: 640px) {
+        position: static;
+      }
     }
   }
 
@@ -82,7 +129,7 @@
     min-width: $expanded-nav-width;
     width: 100%;
     overflow: hidden;
-    padding: rem(16) 0 rem(16);
+    padding: rem(16) 0 0;
 
     &:hover {
       overflow: visible;
@@ -167,6 +214,16 @@
 
   &__subitem {
     padding: rem(18) 0;
+  }
+
+  &__subparent {
+    padding: 0;
+    border-bottom: 1px solid $color-light-border;
+  }
+
+  &__subcategory {
+    color: $light-grey;
+    text-transform: uppercase;
   }
 
   &__sublink {

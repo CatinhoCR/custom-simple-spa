@@ -3,14 +3,14 @@
   "author": "Cato <hello@cato506.com> (https://cato506.com)",
   "version": "1.0.0",
   "description": "Webpack 5, SCSS, modern JS and live reloading. Among many other cool features.",
-  "homepage": "https://github.com/CatinhoCR/modern-frontend-boilerplate#readme",
+  "homepage": "https://github.com/CatinhoCR/custom-simple-spa#readme",
   "browserslist": [
     "last 2 versions",
     "> 5%"
   ],
   "contributors": [],
   "bugs": {
-    "url": "https://github.com/CatinhoCR/modern-frontend-boilerplate/issues"
+    "url": "https://github.com/CatinhoCR/custom-simple-spa/issues"
   },
   "keywords": [
     "webpack",
@@ -22,7 +22,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git@github.com:CatinhoCR/modern-frontend-boilerplate.git"
+    "url": "git@github.com:CatinhoCR/custom-simple-spa.git"
   },
   "scripts": {
     "build": "webpack --mode=production --config config/webpack.prod.js",
