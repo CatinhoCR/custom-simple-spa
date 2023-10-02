@@ -1,5 +1,6 @@
 import hamburger from './hamburger.html'
 import nav from './drawer.html'
+import { data } from 'autoprefixer';
 
 class DrawerSidebar {
   constructor(el) {
@@ -16,7 +17,7 @@ class DrawerSidebar {
    */
   init() {
     this.isExpanded = false
-    this.isDocked = false; // @todo
+    this.isDocked = true; // @todo
 
     this.openedSubmenu = document.querySelector('.drawer__flyout--open')
     this.openDetailsCss = 'drawer__flyout--sub-active'
@@ -37,6 +38,7 @@ class DrawerSidebar {
     this.header = document.querySelector('.drawer__header')
     this.toggler = document.querySelector('.drawer__toggler')
     this.icon = document.querySelector('.drawer__toggler-icon')
+    this.subcategory = document.querySelector('.drawer__subcategory')
 
     this.menuItems = [].slice.call(
       document.querySelectorAll('.drawer__button')
@@ -69,6 +71,7 @@ class DrawerSidebar {
     this.icon.classList.toggle('hamburger-icon--open')
     this.drawer.classList.toggle('drawer__nav--open')
     this.header.classList.toggle('drawer__header--visible')
+
   }
 
   onTogglerClick() {
@@ -86,10 +89,13 @@ class DrawerSidebar {
         this.onBackClick()
       } else {
         this.isDocked = !this.isDocked
-        if (this.isDocked) this.elem.classList.remove('drawer--docked')
+        if (this.isDocked) this.elem.classList.toggle('drawer--docked')
         this.mainTogglerClasses()
       }
+    })
 
+    this.subcategory.addEventListener('click', () => {
+      this.onBackClick()
     })
   }
 
@@ -102,7 +108,7 @@ class DrawerSidebar {
     // console.log('back sub menu')
     if (target) {
       this.menuItems.forEach(button => {
-        if (target !== button) button.parentElement.classList.remove('active')
+        if (target !== button) button.parentElement.classList.remove('drawer__item--active')
       })
     }
     if (this.openedSubmenu) this.openedSubmenu.classList.remove('drawer__flyout--open')
@@ -145,18 +151,19 @@ class DrawerSidebar {
       item.addEventListener('click', e => {
         // Remove active classes
         this.menuItems.forEach(button => {
-          if (button !== item) button.parentElement.classList.remove('active')
+          if (button !== item) button.parentElement.classList.remove('drawer__item--active')
           // button.parentElement.classList.remove('active')
           // if (button.parentElement.classList.contains('active')) button.parentElement.classList.remove('active')
         })
 
-        item.parentElement.classList.toggle('active')
+        item.parentElement.classList.toggle('drawer__item--active')
 
         // Get opened submenu, match closes it.
 
         const SubMenu = item.nextElementSibling
         // console.log(SubMenu);
         if (SubMenu) {
+
           this.toggleFlyout(SubMenu)
         } else {
           this.onBackClick(e.target.parentElement)
@@ -184,6 +191,7 @@ class DrawerSidebar {
       this.isExpanded = !this.isExpanded
       this.header.innerHTML = 'Collapse Sidebar'
     }
+    if (!this.isExpanded) this.mainTogglerClasses()
   }
 
   /**

@@ -1,10 +1,10 @@
 <aside class="drawer" id="drawer-sidebar">
   <div class="drawer__bar">
     <!-- <div class="drawer__header"> -->
-      <button class="drawer__header drawer__header--collapse">
-        Collapse Sidebar
-      </button>
-      <!-- <button class="drawer__header drawer__header--flyout">
+    <button class="drawer__header drawer__header--collapse">
+      Collapse Sidebar
+    </button>
+    <!-- <button class="drawer__header drawer__header--flyout">
         Collapse Item Submenu
       </button> -->
     <!-- </div> -->
@@ -15,11 +15,23 @@
             <div class="drawer__pre button__pre">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon drawer__icon button__icon" viewBox="0 0 512 512">
                 <title>Home</title>
-                <path class="icon__path" d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
-                <path class="icon__path" d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+                <path class="icon__path"
+                  d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"
+                  fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+                <path class="icon__path" d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69"
+                  fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
               </svg>
             </div>
             <span class="drawer__text button__text">Home</span>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icon drawer__icon button__icon" width="512" height="512" viewBox="0 0 512 512">
+              <title>ionicons-v5-k</title>
+              <path d="M384,224V408a40,40,0,0,1-40,40H104a40,40,0,0,1-40-40V168a40,40,0,0,1,40-40H271.48"
+                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+              <polyline points="336 64 448 64 448 176"
+                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+              <line x1="224" y1="288" x2="440" y2="72"
+                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+            </svg> -->
           </a>
         </li>
         <li class="drawer__item">
@@ -27,26 +39,35 @@
             <div class="drawer__pre button__pre">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon drawer__icon button__icon" viewBox="0 0 512 512">
                 <title>Library</title>
-                <rect x="32" y="96" width="64" height="368" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linejoin="round"
-                  stroke-width="32" />
-                <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="32" d="M112 224h128M112 400h128" />
+                <rect x="32" y="96" width="64" height="368" rx="16" ry="16" fill="none" stroke="currentColor"
+                  stroke-linejoin="round" stroke-width="32" />
+                <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="32" d="M112 224h128M112 400h128" />
                 <rect x="112" y="160" width="128" height="304" rx="16" ry="16" fill="none" stroke="currentColor"
                   stroke-linejoin="round" stroke-width="32" />
-                <rect x="256" y="48" width="96" height="416" rx="16" ry="16" fill="none" stroke="currentColor" stroke-linejoin="round"
-                  stroke-width="32" />
+                <rect x="256" y="48" width="96" height="416" rx="16" ry="16" fill="none" stroke="currentColor"
+                  stroke-linejoin="round" stroke-width="32" />
                 <path class="icon__path"
                   d="M422.46 96.11l-40.4 4.25c-11.12 1.17-19.18 11.57-17.93 23.1l34.92 321.59c1.26 11.53 11.37 20 22.49 18.84l40.4-4.25c11.12-1.17 19.18-11.57 17.93-23.1L445 115c-1.31-11.58-11.42-20.06-22.54-18.89z"
                   fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" />
               </svg>
             </div>
             <span class="drawer__text button__text">Styleguide</span>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 512 512">
+              <title>Chevron Forward</title>
+              <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144" />
+            </svg> -->
           </button>
           <ul class="drawer__flyout">
             <li class="drawer__subparent">
-              <span class="drawer__subcategory">
-                Styleguide
-              </span>
+              <!-- <span class="drawer__subcategory">
+
+              </span> -->
+              <button class="drawer__subcategory">
+                <svg class="icon drawer__icon button__icon" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>Arrow left back</title><polyline points="244 400 100 256 244 112" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><line x1="120" y1="256" x2="412" y2="256" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/></svg>
+                <span class="drawer__text button__text">Styleguide</span>
+
+              </button>
             </li>
             <li class="drawer__subitem">
               <a href="#/styleguide" class="drawer__sublink">
@@ -61,12 +82,14 @@
           </ul>
         </li>
         <li class="drawer__item">
-          <a class="drawer__button drawer__parent button button--drawer button--transparent" href="#styleguide-cards">
+          <a class="drawer__button button button--drawer button--transparent" href="#styleguide-cards">
             <div class="drawer__pre button__pre">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon drawer__icon button__icon" viewBox="0 0 512 512">
                 <title>Easel</title>
-                <rect x="48" y="80" width="416" height="272" rx="32" ry="32" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" />
-                <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 416v-64M256 80V48M400 464l-32-112M112 464l32-112" />
+                <rect x="48" y="80" width="416" height="272" rx="32" ry="32" fill="none" stroke="currentColor"
+                  stroke-linejoin="round" stroke-width="32" />
+                <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="32" d="M256 416v-64M256 80V48M400 464l-32-112M112 464l32-112" />
               </svg>
             </div>
             <span class="drawer__text button__text">Cards</span>
@@ -85,24 +108,29 @@
           </ul> -->
         </li>
         <li class="drawer__item">
-          <a class="drawer__button drawer__parent button button--drawer button--transparent" href="#styleguide-accordion">
+          <a class="drawer__button button button--drawer button--transparent"
+            href="#styleguide-accordion">
             <div class="drawer__pre button__pre">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon drawer__icon button__icon" viewBox="0 0 512 512">
                 <title>Easel</title>
-                <rect x="48" y="80" width="416" height="272" rx="32" ry="32" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" />
-                <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 416v-64M256 80V48M400 464l-32-112M112 464l32-112" />
+                <rect x="48" y="80" width="416" height="272" rx="32" ry="32" fill="none" stroke="currentColor"
+                  stroke-linejoin="round" stroke-width="32" />
+                <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="32" d="M256 416v-64M256 80V48M400 464l-32-112M112 464l32-112" />
               </svg>
             </div>
             <span class="drawer__text button__text">Accordion</span>
           </a>
         </li>
         <li class="drawer__item">
-          <a class="drawer__button drawer__parent button button--drawer button--transparent" href="#/contact/">
+          <a class="drawer__button button button--drawer button--transparent" href="#/contact/">
             <div class="drawer__pre button__pre">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon drawer__icon button__icon" viewBox="0 0 512 512">
                 <title>Mail</title>
-                <rect x="48" y="96" width="416" height="320" rx="40" ry="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
-                <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M112 160l144 112 144-112" />
+                <rect x="48" y="96" width="416" height="320" rx="40" ry="40" fill="none" stroke="currentColor"
+                  stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+                <path class="icon__path" fill="none" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="32" d="M112 160l144 112 144-112" />
               </svg>
             </div>
             <span class="drawer__text button__text">Contact</span>
@@ -126,9 +154,14 @@
           </button>
           <ul class="drawer__flyout">
             <li class="drawer__subparent">
-              <span class="drawer__subcategory">
-                Account Settings
-              </span>
+              <!-- <span class="drawer__subcategory">
+
+              </span> -->
+              <button class="drawer__subcategory">
+                <svg class="icon drawer__icon button__icon" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>Arrow left back</title><polyline points="244 400 100 256 244 112" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/><line x1="120" y1="256" x2="412" y2="256" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/></svg>
+                <span class="drawer__text button__text">Account Settings</span>
+
+              </button>
             </li>
             <li class="drawer__subitem">
               <a href="#/profile" class="drawer__sublink">

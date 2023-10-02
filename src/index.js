@@ -1,6 +1,7 @@
 import RouterModule from 'js/router'
 
 import drawer from './drawer/drawer'
+// import sidebar from './sidebar/sidebar'
 // Include css for webpack (for development only)
 // const css = require('../scss/main.scss') // eslint-disable-line no-unused-vars
 import 'styles/app.scss'
@@ -18,10 +19,15 @@ class App {
   constructor(el) {
     this.body = el
     this.init()
+    this.newSidebar = true
   }
 
   init() {
-    drawer.init()
+    // if (this.newSidebar) {
+      // sidebar.init()
+    // } else {
+      drawer.init()
+    // }
     RouterModule.init()
   }
 }

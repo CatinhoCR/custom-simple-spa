@@ -33,6 +33,8 @@
   &--open {
     .hamburger-icon {
       &__line {
+        stroke: $warm-white;
+
         &-first {
           stroke-dasharray: 90 207;
           stroke-dashoffset: -134;

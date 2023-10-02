@@ -4,12 +4,16 @@
   &--open {
     #{ $self }__toggler {
       left: $expanded-nav-width;
-      background-color: $warm-white;
+      background-color: $sidebar-bg;
+      color: $warm-white;
     }
   }
 
   &__page {
     padding-left: $expanded-nav-width + rem(40);
+    // margin-right: -($expanded-nav-width + rem(40));
+    // overflow: hidden;
+    // max-height: 100vh;
   }
 
   &__toggler {
@@ -135,7 +139,7 @@
       overflow: visible;
     }
 
-    &.active {
+    &--active {
       .drawer__icon,
       .drawer__text {
         color: $nav-hover-color;
@@ -146,7 +150,7 @@
   &__button {
     box-shadow: none;
     position: relative;
-    display: table;
+    // display: table;
     border-collapse: collapse;
     border-spacing: 0;
     padding: 0;
@@ -161,9 +165,22 @@
     }
   }
 
+  &__parent {
+    &::after {
+      content: "";
+      // display: block;
+      transition: transform 0.3s;
+      border-right: 2px solid currentcolor;
+      border-bottom: 2px solid currentcolor;
+      width: 5px;
+      height: 5px;
+      transform: rotate(-45deg);
+    }
+  }
+
   &__pre {
     position: relative;
-    display: table-cell;
+    // display: table-cell;
     vertical-align: middle;
     width: $docked-nav-width;
     height: rem(36);
@@ -181,7 +198,7 @@
 
   &__text {
     position: relative;
-    display: table-cell;
+    // display: table-cell;
     vertical-align: middle;
     width: $expanded-nav-width - $docked-nav-width;
     text-align: left;
@@ -224,6 +241,15 @@
   &__subcategory {
     color: $light-grey;
     text-transform: uppercase;
+
+    .drawer__text.button__text,
+    .drawer__icon {
+      color: $light-grey;
+    }
+
+    .drawer__text.button__text {
+      color: $light-grey;
+    }
   }
 
   &__sublink {
