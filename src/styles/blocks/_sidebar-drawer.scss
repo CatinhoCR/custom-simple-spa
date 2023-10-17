@@ -1,0 +1,121 @@
+.sidebar {
+  $self: &;
+  position: relative;
+  height: 100%;
+  overflow: hidden auto;
+  max-width: $expanded-nav-width;
+
+  &__toggler {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: z('navigation');
+  }
+
+  &__drawer {
+    background-color: $sidebar-bg;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    // width: 0;
+    width: $docked-nav-width;
+    overflow: hidden auto;
+    z-index: z('slider-nav');
+    transition: width 0.5s linear;
+    padding-top: rem(60);
+
+    &--open {
+      width: $mobile-nav-width;
+      // width: $expanded-nav-width;
+    }
+  }
+
+  &__list,
+  &__item,
+  &__button {
+    // display: block;
+    width: 100%;
+  }
+
+  &__item {
+    position: relative;
+    display: block;
+    min-width: $mobile-nav-width;
+    width: 100%;
+    overflow: hidden;
+    padding: rem(16) 0 0;
+  }
+
+  &__button {
+    box-shadow: none;
+    position: relative;
+    // display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    padding: rem(8) 0;
+    justify-content: flex-start;
+
+    &-pre {
+      width: $docked-nav-width;
+      // padding: rem;
+    }
+
+    &__text {
+
+    }
+  }
+
+  &__icon {
+    width: rem(32);
+    height: rem(32);
+  }
+
+  &__flyout {
+    background-color: $flyout-bg;
+    position: fixed;
+    right: 0;
+    left: rem(62);
+    bottom: 0;
+    top: rem(62);
+    width: rem(290);
+    height: 100%;
+    z-index: 99999;
+    padding: rem(20);
+    transform: translateX(400px);
+    transition: 0.4s transform linear;
+
+    &--open {
+      transform: translateX(0);
+      transition: 0.4s transform linear;
+    }
+  }
+
+  // &__drawer {
+  //   background-color: $sidebar-bg;
+  //   position: fixed;
+  //   height: 100%;
+  //   // transform: translateX(-70px);
+  //   transition: all 0.5s linear;
+  //   width: 0;
+  //   overflow: hidden auto;
+  //   // max-width: $expanded-nav-width;
+
+  //   &--open {
+  //     // transform: translateX(0);
+  //     width: $expanded-nav-width;
+  //   }
+  // }
+
+  // &__list {
+  //   width: 100%;
+  // }
+
+  // &__item {
+  //   width: 100%;
+  //   display: block;
+  // }
+
+  // &__button {
+  //   width: 100%;
+  // }
+}

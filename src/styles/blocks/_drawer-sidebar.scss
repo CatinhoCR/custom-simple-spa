@@ -3,15 +3,15 @@
 
   &--open {
     #{ $self }__toggler {
-      left: $expanded-nav-width;
-      background-color: $sidebar-bg;
+      left: $mobile-nav-width;
+      background-color: $dark-blue;
       color: $warm-white;
     }
   }
 
   &__page {
-    padding-left: $expanded-nav-width + rem(40);
-    // margin-right: -($expanded-nav-width + rem(40));
+    padding-left: $mobile-nav-width + rem(40);
+    // margin-right: -($mobile-nav-width + rem(40));
     // overflow: hidden;
     // max-height: 100vh;
   }
@@ -39,7 +39,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    max-width: $expanded-nav-width;
+    max-width: $mobile-nav-width;
     overflow: hidden;
     z-index: z('navigation');
     transition: max-width 0.4s ease;
@@ -94,7 +94,7 @@
     transition: all 0.5s linear;
 
     &--open {
-      max-width: $expanded-nav-width;
+      max-width: $mobile-nav-width;
       transform: translateX(0);
       width: 100%;
     }
@@ -104,9 +104,9 @@
       transform: translateX(0);
       width: 100%;
 
-      // &:hover,
+      &:hover,
       &--open {
-        max-width: $expanded-nav-width;
+        max-width: $mobile-nav-width;
         transform: translateX(0);
         width: 100%;
       }
@@ -130,7 +130,7 @@
   &__item {
     position: relative;
     display: block;
-    min-width: $expanded-nav-width;
+    min-width: $mobile-nav-width;
     width: 100%;
     overflow: hidden;
     padding: rem(16) 0 0;
@@ -148,7 +148,7 @@
   }
 
   &__button {
-    box-shadow: none;
+    // box-shadow: none;
     position: relative;
     // display: table;
     border-collapse: collapse;
@@ -156,6 +156,10 @@
     padding: 0;
     transform: translateZ(0) scale(1, 1);
     transition: all 0.4s linear;
+
+    &:focus {
+
+    }
 
     &:hover {
       #{$self}__icon,
@@ -200,7 +204,7 @@
     position: relative;
     // display: table-cell;
     vertical-align: middle;
-    width: $expanded-nav-width - $docked-nav-width;
+    width: $mobile-nav-width - $docked-nav-width;
     text-align: left;
     padding-left: rem(20);
     font-size: rem(18);
@@ -222,10 +226,12 @@
     padding: rem(20);
     transform: translateX(400px);
     transition: 0.4s transform linear;
+    visibility: hidden;
 
     &--open {
       transform: translateX(0);
       transition: 0.4s transform linear;
+      visibility: visible;
     }
   }
 
@@ -235,12 +241,13 @@
 
   &__subparent {
     padding: 0;
-    border-bottom: 1px solid $color-light-border;
+    // border-bottom: 1px solid $color-light-border;
   }
 
   &__subcategory {
     color: $light-grey;
     text-transform: uppercase;
+
 
     .drawer__text.button__text,
     .drawer__icon {
@@ -249,6 +256,13 @@
 
     .drawer__text.button__text {
       color: $light-grey;
+      font-size: rem(12);
+      padding-left: rem(6);
+      line-height: 0;
+      padding-top: 0;
+      margin: 0;
+      vertical-align: super;
+      display: inline-block;
     }
   }
 
